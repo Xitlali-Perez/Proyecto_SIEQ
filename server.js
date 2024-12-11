@@ -712,7 +712,7 @@ app.get('/obtenerDetallesFormulario', (req, res) => {
             f.fir_elaboro_vehiculo AS firmaelaboro,
             f.tipo_registro,
             v.no_unidad AS unidad,
-            v.tipo AS tipo_vehiculo,
+            v.tipo,
             v.placas,
             n.aceite_motor,
             n.anticongelante,
