@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <script src="public/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Logo en la esquina superior izquierda -->
+    <div class="logo">
+        <img src="public/img/logo.png" alt="SIEQ Logo">
+    </div>
+
+    <!-- Contenedor del formulario de inicio de sesión -->
+    <div class="container">
+        <div class="login-box">
+            <!-- Icono de perfil en la parte superior del formulario -->
+            <div class="profile-icon">
+                <img src="public/img/usuario_f.png" alt="User Icon">
+            </div>
+            <h1>Iniciar Sesión</h1>
+            <form onsubmit="loginUser(); return false;">
+                <div class="input-group">
+                    <div class="input-icon">
+                        <img src="public/img/usuario.png" alt="Icono Usuario">
+                    </div>
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuario" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <img src="public/img/candado.png" alt="Icono Contraseña">
+                    </div>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required autocomplete="off">
+                </div>
+                <button type="submit" class="login-btn">INICIAR</button>
+            </form>
+        </div>  
+    </div>    
+</body>
+</html>

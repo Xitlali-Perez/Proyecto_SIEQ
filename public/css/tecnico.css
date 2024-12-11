@@ -1,0 +1,319 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; 
+}
+
+header {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: center;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.results-section {
+    margin: 20px;
+}
+
+.new-button {
+    background-color: #19c003;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 0;
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    text-align: center; /* Asegura que el contenido esté centrado */
+}
+
+.new-button:hover {
+    background-color: #149c02; /* Color más oscuro al pasar el mouse */
+}
+
+/* Botón de Modificar */
+.modify-button {
+    display: inline-flex; /* Alinea los elementos internos en línea */
+    align-items: center; /* Centra el texto e ícono verticalmente */
+    padding: 8px 15px;
+    background-color: #ffa500; /* Color naranja */
+    border: none;
+    border-radius: 5px;
+    margin: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    gap: 2px; /* Espacio entre el texto y el ícono */
+    text-align: center; /* Centra el contenido */
+    transition: background-color 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.modify-button:hover {
+    background-color: #e47d00; /* Color más oscuro al pasar el mouse */
+}
+
+/* Botón de Eliminar */
+.delete-button {
+    display: inline-flex; /* Alinea los elementos internos en línea */
+    align-items: center; /* Centra el texto e ícono verticalmente */
+    padding: 8px 15px;
+    background-color: #d80000; /* Color rojo */
+    border: none;
+    border-radius: 5px;
+    margin: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    gap: 2px; /* Espacio entre el texto y el ícono */
+    text-align: center; /* Centra el contenido */
+    transition: background-color 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.delete-button:hover {
+    background-color: #850000; /* Color más oscuro al pasar el mouse */
+}
+
+/* Contenedor para centrar y limitar el ancho de la tabla */
+.table-container {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto; /* Habilita el desplazamiento horizontal en pantallas pequeñas */
+    padding: 0 20px; /* Ajusta el margen en los lados */
+}
+
+/* Estilos específicos para la tabla con id "tablarevision" */
+#tablarevision {
+    table-layout: auto;
+    width: 100%;
+    max-width: 1300px; /* Define el ancho máximo de la tabla */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#tablarevision td:last-child {
+    width: 200px; /* Ajusta el ancho de la columna con botones */
+}
+
+/* Asegúrate de aplicar los estilos solo a la tabla con id "tablarevision" */
+#tablarevision th,
+#tablarevision td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center; /* Centra el texto solo en esta tabla */
+    white-space: nowrap; /* Evita que el texto se ajuste a varias líneas */
+}
+
+/* Estilo específico para las cabeceras de la tabla "tablarevision" */
+#tablarevision th {
+    background-color: #223b62; /* Color de fondo oscuro */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+}
+
+.search-section {
+    padding: 20px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-section td {
+    background-color: #f4f4f4; /* Color de fondo claro para las celdas */
+}
+
+.search-filters select,
+#searchBtn {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.estado-completo {
+    background-color: #64f364; /* Verde claro */
+}
+
+.estado-pendiente {
+    background-color: #fdf90f; /* Amarillo */
+}
+
+.estado-pendiente:hover {
+    background-color: #faf754; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo para el contenedor */
+.container {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    position: relative; /* Asegura que el contenido se mantenga dentro del contenedor */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que se salga del contenedor */
+}
+/* Estilo para la imagen */
+/* Estilo para la imagen */
+.container img {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+    max-width: 100%; /* Limita el ancho máximo de la imagen */
+    max-height: 100%; /* Limita la altura máxima de la imagen */
+}
+
+
+.tab-content {
+    display: none;
+    padding: 15px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Botones */
+button {
+    display: inline-flex; /* Alinea los elementos internos en línea */
+    align-items: center; /* Centra el texto e ícono verticalmente */
+    padding: 12px 20px;
+    background-color: #2b8ae2;
+    border: none;
+    border-radius: 5px;
+    margin: 14px;
+    cursor: pointer;
+    font-weight: bold; /* Hace que el texto sea negrita */
+    color: rgb(0, 0, 0);
+    gap: 5px; /* Opcional: texto blanco para mayor contraste */
+}
+
+/* Botón de Revisar */
+.view-button {
+    display: inline-flex; /* Alinea los elementos internos en línea */
+    align-items: center; /* Centra el texto e ícono verticalmente */
+    padding: 9px 14px;
+    background-color: #676c6b; /* Color verde */
+    border: none;
+    border-radius: 5px;
+    margin: 14px;
+    cursor: pointer;
+    font-weight: bold; /* Hace que el texto sea negrita */
+    color: white;
+    gap: 5px; /* Espacio entre el texto y el ícono */
+    text-align: center; /* Centra el contenido */
+    transition: background-color 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.view-button:hover {
+    background-color: #898f8e; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo para el contenedor de navegación */
+nav {
+    display: flex;
+    justify-content: flex-end;/* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    width: 100%; /* El contenedor ocupa todo el ancho de la pantalla */
+    background-color: transparent; /* Fondo de la barra de navegación (opcional) */
+}
+
+/* Estilo para la lista de navegación */
+.nav-list {
+    display: flex; /* Organiza los items en una fila */
+    justify-content: space-around; /* Distribuye los items de manera uniforme */
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el padding */
+    margin: 0; /* Elimina el margin */
+}
+
+/* Estilo para cada elemento de la lista */
+.nav-list li {
+    display: flex; /* Hace que los íconos se ajusten dentro de cada item */
+    align-items: center; /* Centra los íconos verticalmente */
+    margin: 0 3px; /* Añade un pequeño espacio entre los items */
+}
+
+/* Estilo para los iconos dentro de los enlaces */
+.icono-nav {
+    max-width: 28px; /* Tamaño máximo para los iconos */
+    max-height: 28px; /* Tamaño máximo para los iconos */
+    width: auto; /* Mantiene la proporción de los iconos */
+    height: auto; /* Mantiene la proporción de los iconos */
+    object-fit: contain; /* Asegura que los iconos no se distorsionen */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+/* Estilo para los enlaces de navegación */
+nav a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: #333; /* Color de texto de los enlaces */
+    display: flex; /* Hace que los íconos y el texto estén en línea */
+    align-items: center; /* Centra el texto y el icono verticalmente */
+    
+}
+.icono-lupa {
+    width: 16px; /* Ajusta el tamaño del ícono según sea necesario */
+    margin-right: 5px; /* Espacio entre el ícono y el texto "Buscar" */
+    color: rgb(0, 0, 0);
+    vertical-align: middle; /* Alinea el ícono con el texto */
+}
+
+.icono-mas {
+    font-family: Arial, sans-serif;
+    width: 22px; /* Ajusta el tamaño del ícono según sea necesario */
+    margin-right: 5px; /* Espacio entre el ícono y el texto "Nuevo" */
+    color: rgb(6, 6, 6);
+}
+
+/* Clase para resaltar el enlace activo */
+.active-link {
+    color: #338bff;  /* El color que desees, por ejemplo un tono naranja */
+    font-weight: bold;  /* Puedes hacer que el texto sea más destacado */
+}
+/* Asegúrate de que los iconos cambien de color también en el estado activo */
+nav a.active .icono-nav {
+    color: #338bff; /* Cambia el color del icono cuando el enlace está activo */
+}
+
+/* Asegúrate de que el icono cambie de color al pasar el mouse sobre el enlace */
+nav a:hover .icono-nav {
+    color: #338bff; /* El color del icono cuando se pasa el mouse sobre el enlace */
+}
+
+/* Para los iconos en estado activo también agrega una transición suave */
+nav a .icono-nav {
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+/* Agregar efectos de hover para los iconos */
+nav a:hover .icono-nav,
+nav a.active .icono-nav {
+    color: #338bff; /* Cambia el color del icono cuando se pasa el mouse o el enlace está activo */
+}

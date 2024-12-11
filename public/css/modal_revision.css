@@ -1,0 +1,270 @@
+
+/* Estilos para la ventana modal */
+.section-header-container {
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
+}
+/* Estilos para la ventana modal */
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0; /* Cambia top: 0 para evitar que quede pegado abajo */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Permite desplazar el contenido si es necesario */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Centrado horizontal y vertical */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Permite usar desplazamientos relativos si es necesario */
+}
+
+.modal-header {
+    position: relative;
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar el texto horizontalmente */
+    background: linear-gradient(130deg, #223b62,#2b7ebc,#379fee);
+    color: white;
+    padding: 5px 14px; /* Espaciado interno */
+    border-top-left-radius: 10px; /* Bordes redondeados */
+    border-top-right-radius: 10px;
+    min-height: 60px; /* Altura mínima para el contenedor */
+}
+
+.modal-header .modal-icon {
+    position: absolute; /* Saca el ícono del flujo principal */
+    left: 20px; /* Posición del ícono a la izquierda */
+    top: 50%; /* Centrar verticalmente */
+    transform: translateY(-50%); /* Ajusta la posición exacta */
+    width: 45px; /* Tamaño del ícono */
+    height: auto;
+}
+
+.modal-header h2 {
+    color: white;
+    font-weight: bold;
+    flex: 1; /* Ocupa el resto del espacio disponible */
+    margin: 0;
+    font-size: 22px; /* Ajusta el tamaño del texto */
+    text-align: center; /* Centrar el texto horizontalmente */
+}
+
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Centrar los botones verticalmente */
+    background-color: #a6dbff;
+    margin-bottom: 30px; /* Aumenta el espacio debajo de .tabs */
+    height: 42px; /* Asegura la misma altura que .section-header */
+    width: 100%; /* Ocupa el 100% del contenedor */
+    box-sizing: border-box; /* Asegura que el padding no haga que el contenedor se desborde */
+    margin: 0 auto;
+}
+
+.tabs {
+    margin-bottom: 18px; /* Mayor espacio entre .tabs y el siguiente elemento */
+}
+
+.tab-button {
+    background-color: #a6dbff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+} 
+
+button[type="submit"] {
+    background-color: #E5BEA3;
+    color: white;
+}
+
+/* Botones específicos */
+.btn {
+    padding: 12px 150px;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.anterior {
+    background-color:  #676c6b;
+    color: #ffffff;
+    margin: 20px;
+}
+
+.btn.cancelar {
+    background-color:  #1E3A5F;
+    color: #ffffff;
+    margin: 20px;
+}
+
+.btn.siguiente {
+    background-color:#23b6e9;
+    color: #ffffff;
+    margin: 20px;
+    margin-left: auto;
+    float: right;
+}
+
+.btn.guardar {
+    background-color: #1E3A5F;
+    color: #ffffff;
+    margin: 20px;
+    float: right;
+}
+
+.btn.subir {
+    background-color: #d4d4d6;
+    color: #000000;
+    margin: 20px;
+    border-radius: 2px;
+}
+
+/* Efecto hover para los botones */
+.btn.anterior:hover {
+    background-color: #bdbdbd;
+}
+
+.btn.cancelar:hover {
+    background-color: #bdbdbd;
+}
+
+.btn.siguiente:hover {
+    background-color: #bdbdbd;
+}
+
+.btn.guardar:hover {
+    background-color: #bdbdbd;
+}
+
+/* Formularios */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group textarea,
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+/* Tablas */
+#tablamodal {
+    width: 95%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#tablamodal th, #tablamodal td{
+    padding: 4px;
+    text-align: center;
+}
+
+#tablamodal th {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Alineación a la izquierda solo para celdas con la clase "label-col" */
+#tablamodal td.label-col {
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Títulos y párrafos */
+h3 {
+    margin-top: 30px; 
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+#nivelCombustible {
+    width: 100%; /* Asegura que la barra ocupe el ancho completo del contenedor */
+   max-width: 400px; /* Opcional: Ajusta el ancho máximo */
+}
+
+#marcadoresCombustible {
+    display: flex;
+    justify-content: space-between; /* Distribuye los marcadores a lo largo de la barra */
+    width: 100%; /* Coincide con el ancho de la barra */
+    max-width: 400px; /* Debe coincidir con la barra */
+    font-size: 14px; /* Ajusta el tamaño del texto */
+}
+
+.llantas-imagen {
+    text-align: center; /* Centra la imagen horizontalmente */
+    margin-bottom: 8px; /* Espaciado entre la imagen y los formularios */
+}
+
+.rueda {
+    max-width: 70px; /* Ajusta el tamaño máximo de la imagen */
+    width: 100%; /* Asegura que la imagen sea responsive */
+    height: auto; /* Mantiene la proporción original */
+    display: block; /* Asegura que respete las reglas de centrado */
+    margin: 0 auto; /* Centra la imagen dentro del contenedor */
+}
+
+/* Estilo para el botón de cerrar */
+.close {
+    font-size: 30px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Más gordito */
+    color: #333; /* Color del texto */
+    position: absolute; /* Para posicionarlo */
+    top: -15px; /* Distancia desde la parte superior */
+    right: 0px; /* Distancia desde la derecha */
+    cursor: pointer; /* Cambia el cursor a una mano */
+    transition: color 0.3s ease; /* Animación de cambio de color */
+}
+
+.close:hover {
+    color: #ba1603; /* Cambia el color al pasar el mouse */
+}

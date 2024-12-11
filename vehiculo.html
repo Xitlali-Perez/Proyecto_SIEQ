@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Registro de Vehículo</title>
+    <link rel="stylesheet" href="public/css/tecnico.css">
+    <link rel="stylesheet" href="public/css/modal_tecnico.css">
+    <link rel="stylesheet" href="public/css/modal_alert.css">
+    <script src="navbar.js" defer></script>
+</head>
+<body>
+    <!-- Imagen fondo_SIEQ -->
+    <div class="container">
+        <img src="public/img/fondo_t.png" alt="Imagen SIEQ">
+    </div>
+    <header>
+        <div class="logo">
+            <img src="public/img/logo_b.png" alt="Logo SIEQ">
+        </div>
+        <nav id="navbar">
+        </nav>
+    </header>
+    <main>
+        <section class="results-section">
+            <button id="newBtn" class="new-button">
+                <img src="public/img/agregar.png" class="icono-mas">Nuevo Vehículo
+            </button>
+            <div class="table-container">
+                <table class="results-section" id="tablarevision">
+                    <thead>
+                        <tr>
+                            <th>No. Unidad</th>
+                            <th>Tipo de Unidad</th>
+                            <th>Año</th>
+                            <th>Placas</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicleTableBody">
+                        <!-- Los registros se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="modalForm" class="modal">
+        <div class="modal-content"> 
+            <div style="position: relative; width: 100%; height: 20px; background-color: #f9f9f9;">
+                <span class="close">&times;</span>
+            </div>  
+            <div class="modal-header">
+                <img src="public/img/vehiculo.png" alt="Ícono" class="modal-icon">
+                <h2></h2>
+            </div>
+            <form id="vehicleForm" class="form-layout">
+                <div class="form-row">
+                    <label for="numeroUnidad">Número de Unidad:</label>
+                    <input type="text" id="numeroUnidad" name="numeroUnidad" required>
+                </div>
+                <div class="form-row">
+                    <label for="tipoVehiculo">Tipo de Vehículo:</label>
+                    <input type="text" id="tipoVehiculo" name="tipoVehiculo" required>
+                </div>
+                <div class="form-row">
+                    <label for="year">Año:</label>
+                    <input type="number" id="year" name="year" required>
+                </div>
+                <div class="form-row">
+                    <label for="placas">Placas:</label>
+                    <input type="text" id="placas" name="placas" required>
+                </div>
+                <div class="button-row">
+                    <button type="button" class="butto-cancelar" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="butto-enviar">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+
+    <div id="notificationModal" class="notif-modal">
+        <div class="notif-content">
+            <p id="notifMessage"></p>
+            <button id="notifClose">Cerrar</button>
+        </div>
+    </div>    
+
+    <div id="confirmModal" class="notif-modal">
+        <div class="notif-content">
+            <p id="confirmMessage"></p>
+            <button id="confirmDeleteBtn" class="btn-confirm">Sí</button>
+            <button id="cancelDeleteBtn" class="btn-cancel">No</button>
+        </div>
+    </div>
+    
+
+    <script src="public/js/vehiculo.js"></script>
+</body>
+</html>

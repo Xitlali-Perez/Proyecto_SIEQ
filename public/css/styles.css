@@ -1,0 +1,128 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/fondo.png'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Logo de SIEQ en la esquina superior izquierda */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo img {
+    width: 130px;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Caja de inicio de sesión */
+.login-box {
+    background: rgba(255, 255, 255, 0.80); /* Fondo blanco con opacidad */
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Ícono de perfil en la parte superior del formulario */
+.profile-icon {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 60%;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+}
+
+.profile-icon img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* Título */
+h1 {
+    font-size: 25px;
+    color: #000;
+    margin-top: 28px;
+    margin-bottom: 20px;
+}
+
+/* Grupo de entrada (input) */
+.input-group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #2b8ae2;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.input-icon {
+    background-color: #ffffff;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+}
+
+.input-icon img {
+    width: 29px;
+    height: 29px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    background: #2b8ae2;
+    border-radius: 0 5px 5px 0;
+}
+
+/* Botón de iniciar sesión */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #333;
+}

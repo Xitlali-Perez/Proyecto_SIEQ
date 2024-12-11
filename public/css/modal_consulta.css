@@ -1,0 +1,142 @@
+/* Estilos específicos para el modal de registros */
+#registroModal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed; /* Posición fija para que el modal permanezca en la misma posición al hacer scroll */
+    z-index: 1000; /* Aparece encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Cubre todo el ancho de la ventana */
+    height: 100%; /* Cubre toda la altura de la ventana */
+    overflow: auto; /* Permite hacer scroll si el contenido es mayor que la pantalla */
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo oscuro semitransparente */
+    transition: opacity 0.3s ease; /* Transición suave al mostrar u ocultar */
+}
+
+#registroModal .modal-content {
+    background-color: rgba(255, 255, 255, 0.877); /* Fondo blanco semitransparente */
+    margin: 3% auto; /* Centra el modal horizontalmente */
+    padding: 40px 30px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    width: 80%; /* Modal más ancho */
+    max-width: 1300px; /* Máximo ancho del modal */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Sombra alrededor del modal */
+}
+
+#registroModal .close {
+    color: #888; /* Color inicial del botón de cerrar */
+    font-size: 24px; /* Tamaño del icono */
+    font-weight: bold; /* Negrita */
+    position: absolute; /* Posiciona el botón respecto al modal */
+    top: 10px; /* Separación superior */
+    right: 15px; /* Separación derecha */
+    transition: color 0.2s ease; /* Transición al cambiar de color */
+}
+
+#registroModal .close:hover,
+#registroModal .close:focus {
+    color: #333; /* Color más oscuro al pasar el mouse */
+    cursor: pointer; /* Muestra el cursor como mano */
+}
+
+#registroModal .registros-cont {
+    display: flex; /* Organización en fila por defecto */
+    flex-wrap: wrap; /* Permite que los elementos bajen a una nueva fila si no caben */
+    gap: 20px; /* Espacio entre las tarjetas */
+    justify-content: flex-start; /* Alinea las tarjetas a la izquierda */
+    margin-top: 5px; /* Separación superior */
+}
+
+/* Estilos para las tarjetas individuales */
+#registroModal .registro-card {
+    border: 1px solid #ddd; /* Borde tenue */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    width: 45%; /* Ocupa casi la mitad del contenedor para lograr dos filas */
+    background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Fondo con efecto de luz */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.5); /* Sombra alrededor */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza la animación al interactuar */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    position: relative;
+}
+
+#registroModal .registro-card:hover {
+    transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el mouse */
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3), -8px -8px 20px rgba(255, 255, 255, 0.5); /* Sombra más pronunciada */
+}
+
+/* Títulos de Entrada y Salida */
+#registroModal .registro-titulo {
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+
+#registroModal .registro-titulo.entrada {
+    background: linear-gradient(130deg, #286299,#3587d4,rgb(165, 216, 255));
+}
+
+#registroModal .registro-titulo.salida {
+    background: linear-gradient(130deg, #248794,#35c9dc,#b0f6ff);
+
+}
+
+#registroModal .registro-detalles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px; /* Espaciado entre los elementos */
+    margin-top: 9px;
+}
+
+#registroModal .registro-detalles p {
+    margin: 0; /* Quita márgenes por defecto */
+    padding: 5px 0; /* Espaciado interno */
+    color: #555; /* Color del texto */
+    font-size: 14px; /* Tamaño de la fuente */
+}
+
+@media (max-width: 768px) {
+    #registroModal .registro-detalles {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
+
+#registroModal .registro-card img {
+    width: 100%; /* Imagen ocupa todo el ancho de la tarjeta */
+    height: 100px; /* Altura fija */
+    border-radius: 8px; /* Bordes redondeados */
+    object-fit: cover; /* Recorta la imagen para mantener proporciones */
+}
+
+#registroModal .registro-card h5 {
+    font-size: 14px; /* Tamaño del título */
+    margin: 10px 0; /* Espaciado alrededor del título */
+    text-align: left; /* Alinea el texto a la izquierda */
+    color: #222222; /* Color del texto */
+}
+
+#registroModal .registro-card h4 {
+    font-size: 16px; /* Tamaño del título */
+    margin: 26px 0; /* Espaciado alrededor del título */
+    text-align: left; /* Alinea el texto a la izquierda */
+    color: #000000; /* Color del texto */
+}
+
+#registroModal .registro-card h2 {
+    font-size: 25px; /* Tamaño del título */
+    text-align: center;
+    margin: 10px 15px; /* Espaciado alrededor del título */
+    color: #000000; /* Color del texto */
+}
+
+#registroModal .registro-card p {
+    font-size: 14px; /* Tamaño del texto */
+    margin: 5px 0; /* Espaciado alrededor de los párrafos */
+    line-height: 1.0; /* Espaciado entre líneas */
+    color: #555; /* Color del texto */
+    text-align: left;
+}
+

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Revisión de Transporte</title>
+    <link rel="stylesheet" href="public/css/modal_revision.css">
+    <link rel="stylesheet" href="public/css/tecnico.css">
+    <link rel="stylesheet" href="public/css/modal_consulta.css">
+    <script src="navbar.js" defer></script>
+</head>
+<body>
+        <!-- Imagen fondo_SIEQ -->
+    <div class="container">
+        <img src="public/img/fondo_t.png" alt="Imagen SIEQ">
+    </div>
+    <header>
+        <div class="logo">
+            <img src="public/img/logo_b.png" alt="Logo SIEQ">
+        </div>
+        <nav id="navbar">
+        </nav>
+    </header>
+    <main>
+        <section class="search-section">
+            <div class="search-filters">
+                <select id="selectYear">
+                    <option value="">Seleccionar Año</option>
+                </select>
+                <select id="selectMonth">
+                    <option value="">Seleccionar Mes</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+                <select id="selectUnit">
+                    <option value="">Seleccionar Unidad</option>
+                </select>  <!-- Agregar Icono lupa -->
+                <button id="searchBtn">
+                    <img src="public/img/lupa.png" alt="Lupa" class="icono-lupa">
+                    Buscar
+                </button>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="table-container">
+                <table id="tablarevision">
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Tipo de Unidad</th>
+                            <th>Fecha de Registro</th>
+                            <th>Nombre del Elaborante</th>
+                            <th>Tipo de Registro</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTable">
+                        <!-- Filas de resultados -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="secondFormModal" class="modal">
+        <div class="modal-content">
+            <div style="position: relative; width: 100%; height: 20px; background-color: #f9f9f9;">
+                <span class="close">&times;</span>
+            </div>            
+            <div class="modal-header">
+                <img src="public/img/revision.png" alt="Ícono" class="modal-icon">
+                <h2>REVISIÓN DE TRANSPORTE</h2>
+            </div>
+            <div class="tabs">
+                <button class="tab-button" onclick="openTab(event, 'vehiculo')">VEHÍCULO</button>
+                <button class="tab-button" onclick="openTab(event, 'niveles')">NIVELES Y EXTERIORES</button>
+                <button class="tab-button" onclick="openTab(event, 'interiores')">INTERIORES Y EMERGENCIA</button>
+                <button class="tab-button" onclick="openTab(event, 'observaciones')">OBSERVACIONES</button>
+            </div>
+            <!-- --------------------------------------------------------------------------------------------------------- -->
+            <!-- Vehículo -->
+            <form id="secondForm" onsubmit="submitSecondForm(event)">
+                <div id="vehiculo" class="tab-content active">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="folio">FOLIO:</label>
+                            <input type="number" id="folio" name="folio" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">FECHA:</label>
+                            <input type="date" id="fecha" name="fecha" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">HORA:</label>
+                            <input type="time" id="hora" name="hora" readonly>
+                        </div>
+                    </div>
+                    <h3>DOCUMENTACIÓN DEL VEHÍCULO</h3>
+            	    <div class="form-row">
+                        <div class="form-group">
+                            <label for="unidad">NÚMERO DE UNIDAD:</label>
+                            <input type="number" id="unidad" name="unidad" placeholder="Unidad" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="placas">PLACAS:</label>
+                            <input type="text" id="placas" name="placas" placeholder="Placas" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipovehiculo">TIPO DE VEHICULO:</label>
+                            <input type="text" id="tipovehiculo" name="tipovehiculo" placeholder="Vehiculo" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="kilometraje">KILOMETRAJE:</label>
+                            <input type="number" id="kilometraje" name="kilometraje" placeholder="Kilometraje" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="destino">DESTINO:</label>
+                            <input type="text" id="destino" name="destino" placeholder="Destino">
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                        	    <td class="label-col">LICENCIA DE CONDUCIR</td>
+                                    <td><input type="radio" name="licenconducir" value="bien" checked></td>
+                                    <td><input type="radio" name="licenconducir" value="mal"></td>
+                    		    </tr>
+                                <tr>
+                        	    <td class="label-col">T. DE CIRCULACIÓN</td>
+                                    <td><input type="radio" name="tcirculacion" value="bien" checked></td>
+                                    <td><input type="radio" name="tcirculacion" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">PÓLIZA</td>
+                                    <td><input type="radio" name="poliza" value="bien" checked></td>
+                                    <td><input type="radio" name="poliza" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">VVQ.</td>
+                                    <td><input type="radio" name="vvq" value="bien" checked></td>
+                                    <td><input type="radio" name="vvq" value="mal"></td>
+                                </tr>
+                            </table>
+                	    </div>
+                    </div>
+                    <button type="button" class="btn cancelar" onclick="closeModal()">Cancelar</button>
+                    <button type="button" class="btn siguiente" onclick="nextTab('niveles')">Siguiente</button>
+                </div>
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+                <!-- Niveles y Exteriores -->
+                <div id="niveles" class="tab-content">
+                    <h3>REVISIÓN DE NIVELES</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ACEITE DEL MOTOR</td>
+                                    <td><input type="radio" name="aceite_motor" value="bien"></td>
+                                    <td><input type="radio" name="aceite_motor" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ANTICONGELANTE</td>
+                                    <td><input type="radio" name="anticongelante" value="bien"></td>
+                                    <td><input type="radio" name="anticongelante" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ESTADO DE LOS FRENOS</td>
+                                    <td><input type="radio" name="estadofrenos" value="bien"></td>
+                                    <td><input type="radio" name="estadofrenos" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIQUIDO DE FRENOS</td>
+                                    <td><input type="radio" name="liquidofrenos" value="bien"></td>
+                                    <td><input type="radio" name="liquidofrenos" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIQUIDO DE LIMPIAPARABRISAS</td>
+                                    <td><input type="radio" name="liqlimpiaparabrisas" value="bien"></td>
+                                    <td><input type="radio" name="liqlimpiaparabrisas" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <h3>REVISIÓN DE EXTERIORES</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LUCES</td>
+                                    <td><input type="radio" name="luces" value="bien"></td>
+                                    <td><input type="radio" name="luces" value="sucio"></td>
+                                    <td><input type="radio" name="luces" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">1/4 LUCES</td>
+                                    <td><input type="radio" name="cuartoluces" value="bien"></td>
+                                    <td><input type="radio" name="cuartoluces" value="sucio"></td>
+                                    <td><input type="radio" name="cuartoluces" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ANTENA</td>
+                                    <td><input type="radio" name="antena" value="bien"></td>
+                                    <td><input type="radio" name="antena" value="sucio"></td>
+                                    <td><input type="radio" name="antena" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ESPEJOS RETROVISORES</td>
+                                    <td><input type="radio" name="espejosretr" value="bien"></td>
+                                    <td><input type="radio" name="espejosretr" value="sucio"></td>
+                                    <td><input type="radio" name="espejosretr" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ESPEJOS LATERALES</td>
+                                    <td><input type="radio" name="espejoslat" value="bien"></td>
+                                    <td><input type="radio" name="espejoslat" value="sucio"></td>
+                                    <td><input type="radio" name="espejoslat" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CRISTALES</td>
+                                    <td><input type="radio" name="cristales" value="bien"></td>
+                                    <td><input type="radio" name="cristales" value="sucio"></td>
+                                    <td><input type="radio" name="cristales" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ROTULOS</td>
+                                    <td><input type="radio" name="rotulos" value="bien"></td>
+                                    <td><input type="radio" name="rotulos" value="sucio"></td>
+                                    <td><input type="radio" name="rotulos" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TAPONES RINES</td>
+                                    <td><input type="radio" name="taponesrines" value="bien"></td>
+                                    <td><input type="radio" name="taponesrines" value="sucio"></td>
+                                    <td><input type="radio" name="taponesrines" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TAPON COMBUSTIBLE</td>
+                                    <td><input type="radio" name="taponcombustible" value="bien"></td>
+                                    <td><input type="radio" name="taponcombustible" value="sucio"></td>
+                                    <td><input type="radio" name="taponcombustible" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CLAXON</td>
+                                    <td><input type="radio" name="claxon" value="bien"></td>
+                                    <td><input type="radio" name="claxon" value="sucio"></td>
+                                    <td><input type="radio" name="claxon" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIMPIAPARABRISAS</td>
+                                    <td><input type="radio" name="limpiaparabrisas" value="bien"></td>
+                                    <td><input type="radio" name="limpiaparabrisas" value="sucio"></td>
+                                    <td><input type="radio" name="limpiaparabrisas" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">MANIJAS</td>
+                                    <td><input type="radio" name="manijas" value="bien"></td>
+                                    <td><input type="radio" name="manijas" value="sucio"></td>
+                                    <td><input type="radio" name="manijas" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">FASCIAS</td>
+                                    <td><input type="radio" name="fascias" value="bien"></td>
+                                    <td><input type="radio" name="fascias" value="sucio"></td>
+                                    <td><input type="radio" name="fascias" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIMPIEZA UNIDAD</td>
+                                    <td><input type="radio" name="limpiezaunidad" value="bien"></td>
+                                    <td><input type="radio" name="limpiezaunidad" value="sucio"></td>
+                                    <td><input type="radio" name="limpiezaunidad" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LLANTAS</td>
+                                    <td><input type="radio" name="llantas" value="bien"></td>
+                                    <td><input type="radio" name="llantas" value="sucio"></td>
+                                    <td><input type="radio" name="llantas" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ALARMA DE REVERSA</td>
+                                    <td><input type="radio" name="alarmareversa" value="bien"></td>
+                                    <td><input type="radio" name="alarmareversa" value="sucio"></td>
+                                    <td><input type="radio" name="alarmareversa" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="button" class="btn anterior" onclick="previousTab('vehiculo')">Anterior</button>
+                    <button type="button" class="btn siguiente" onclick="nextTab('interiores')">Siguiente</button>
+                </div>
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+                <!-- REVISION DE INTERIORES -->
+                <div id="interiores" class="tab-content">
+                    <h3>REVISIÓN DE INTERIORES</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TABLERO</td>
+                                    <td><input type="radio" name="tablero" value="bien"></td>
+                                    <td><input type="radio" name="tablero" value="sucio"></td>
+                                    <td><input type="radio" name="tablero" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CALEFACCIÓN</td>
+                                    <td><input type="radio" name="calefaccion" value="bien"></td>
+                                    <td><input type="radio" name="calefaccion" value="sucio"></td>
+                                    <td><input type="radio" name="calefaccion" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ESTEREO</td>
+                                    <td><input type="radio" name="estereo" value="bien"></td>
+                                    <td><input type="radio" name="estereo" value="sucio"></td>
+                                    <td><input type="radio" name="estereo" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">BOCINAS</td>
+                                    <td><input type="radio" name="bocinas" value="bien"></td>
+                                    <td><input type="radio" name="bocinas" value="sucio"></td>
+                                    <td><input type="radio" name="bocinas" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">VISERAS</td>
+                                    <td><input type="radio" name="viseras" value="bien"></td>
+                                    <td><input type="radio" name="viseras" value="sucio"></td>
+                                    <td><input type="radio" name="viseras" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">RETROVISOR</td>
+                                    <td><input type="radio" name="retrovisor" value="bien"></td>
+                                    <td><input type="radio" name="retrovisor" value="sucio"></td>
+                                    <td><input type="radio" name="retrovisor" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CENICEROS</td>
+                                    <td><input type="radio" name="ceniceros" value="bien"></td>
+                                    <td><input type="radio" name="ceniceros" value="sucio"></td>
+                                    <td><input type="radio" name="ceniceros" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">BOTONES</td>
+                                    <td><input type="radio" name="botones" value="bien"></td>
+                                    <td><input type="radio" name="botones" value="sucio"></td>
+                                    <td><input type="radio" name="botones" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">MANIJAS</td>
+                                    <td><input type="radio" name="manijas" value="bien"></td>
+                                    <td><input type="radio" name="manijas" value="sucio"></td>
+                                    <td><input type="radio" name="manijas" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TAPETES</td>
+                                    <td><input type="radio" name="tapetes" value="bien"></td>
+                                    <td><input type="radio" name="tapetes" value="sucio"></td>
+                                    <td><input type="radio" name="tapetes" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">VESTIDURAS</td>
+                                    <td><input type="radio" name="vestiduras" value="bien"></td>
+                                    <td><input type="radio" name="vestiduras" value="sucio"></td>
+                                    <td><input type="radio" name="vestiduras" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CIELO</td>
+                                    <td><input type="radio" name="cielo" value="bien"></td>
+                                    <td><input type="radio" name="cielo" value="sucio"></td>
+                                    <td><input type="radio" name="cielo" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>BIEN</th>
+                                    <th>SUCIO</th>
+                                    <th>MAL</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">ASIENTOS</td>
+                                    <td><input type="radio" name="asientos" value="bien"></td>
+                                    <td><input type="radio" name="asientos" value="sucio"></td>
+                                    <td><input type="radio" name="asientos" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CINTURONES</td>
+                                    <td><input type="radio" name="cinturones" value="bien"></td>
+                                    <td><input type="radio" name="cinturones" value="sucio"></td>
+                                    <td><input type="radio" name="cinturones" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIBRE DE OLORES</td>
+                                    <td><input type="radio" name="libreolores" value="bien"></td>
+                                    <td><input type="radio" name="libreolores" value="sucio"></td>
+                                    <td><input type="radio" name="libreolores" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">SIN MATERIAL AJENO</td>
+                                    <td><input type="radio" name="materialajeno" value="bien"></td>
+                                    <td><input type="radio" name="materialajeno" value="sucio"></td>
+                                    <td><input type="radio" name="materialajeno" value="mal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LIBRE DE BASURA</td>
+                                    <td><input type="radio" name="librebasura" value="bien"></td>
+                                    <td><input type="radio" name="librebasura" value="sucio"></td>
+                                    <td><input type="radio" name="librebasura" value="mal"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <h3>REVISIÓN DE EMERGENCIA</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>TIENE</th>
+                                    <th>NO TIENE</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">GATO</td>
+                                    <td><input type="radio" name="gato" value="tiene"></td>
+                                    <td><input type="radio" name="gato" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LLAVE</td>
+                                    <td><input type="radio" name="llave" value="tiene"></td>
+                                    <td><input type="radio" name="llave" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TRIANGULO</td>
+                                    <td><input type="radio" name="triangulo" value="tiene"></td>
+                                    <td><input type="radio" name="triangulo" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">LLANTA REFACCIÓN</td>
+                                    <td><input type="radio" name="llantarefaccion" value="tiene"></td>
+                                    <td><input type="radio" name="llantarefaccion" value="no tiene"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>TIENE</th>
+                                    <th>NO TIENE</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">EXTINTOR</td>
+                                    <td><input type="radio" name="extintor" value="tiene"></td>
+                                    <td><input type="radio" name="extintor" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">TORRETA</td>
+                                    <td><input type="radio" name="torreta" value="tiene"></td>
+                                    <td><input type="radio" name="torreta" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CALZAS</td>
+                                    <td><input type="radio" name="calzas" value="tiene"></td>
+                                    <td><input type="radio" name="calzas" value="no tiene"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <table id="tablamodal">
+                                <tr>
+                                    <th></th>
+                                    <th>TIENE</th>
+                                    <th>NO TIENE</th>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">CABLES</td>
+                                    <td><input type="radio" name="cables" value="tiene"></td>
+                                    <td><input type="radio" name="cables" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">MATACHISPAS</td>
+                                    <td><input type="radio" name="matachispas" value="tiene"></td>
+                                    <td><input type="radio" name="matachispas" value="no tiene"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">BOTIQUÍN</td>
+                                    <td><input type="radio" name="botiquin" value="tiene"></td>
+                                    <td><input type="radio" name="botiquin" value="no tiene"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="button" class="btn anterior" onclick="previousTab('niveles')">Anterior</button>
+                    <button type="button" class="btn siguiente" onclick="nextTab('observaciones')">Siguiente</button>
+                </div>
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+                <!-- Observaciones -->
+                <div id="observaciones" class="tab-content">
+                    <div class="form-row">
+                        <div style="width: 40px;">
+                        </div>
+                        <div class="form-group">
+                            <h3>NIVEL DE COMBUSTIBLE</h3>
+                            <div class="llantas-imagen">
+                                <img src="public/img/combustible.png" alt="Icono de llanta" class="rueda">
+                            </div>
+                            <input type="number" id="cantidadCombustible" min="0" max="100" step="1" value="0" step="0.01">
+                             <!-- Barra deslizadora -->
+                            <input type="range" id="nivelCombustible" min="0" max="100" step="1" value="0" />
+                            <!-- Contenedor de marcadores -->
+                            <div id="marcadoresCombustible" style="position: relative; width: 100%; height: 20px;">
+                                <span id="marcadorE" style="position: absolute; left: 0%;">E</span>
+                                <span id="marcador1_4" style="position: absolute; left: 25%;">1/4</span>
+                                <span id="marcador1_2" style="position: absolute; left: 50%;">1/2</span>
+                                <span id="marcador3_4" style="position: absolute; left: 75%;">3/4</span>
+                                <span id="marcadorF" style="position: absolute; left: 100%;">F</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h3>OCUPANTE DEL VEHICULO</h3>
+                            <label for="conductor">NOMBRE DEL CONDUCTOR</label>
+                            <input type="text" id="conductor" placeholder="Nombre Completo">
+                        </div>
+                        <div style="width: 40px;">
+                        </div>
+                    </div>
+                    <!-- Vida Útil y Presión de Llantas -->
+                    <h3>VIDA ÚTIL Y PRESIÓN DE LLANTAS</h3>
+                    <div class="form-row">
+                        <div style="width: 40px;">
+                        </div>
+                        <div class="form-group">
+                            <p>LLANTAS DELANTERAS</p>
+                            <div class="llantas-imagen">
+                                <img src="public/img/rueda.png" alt="Icono de llanta" class="rueda">
+                            </div>
+                            <label style="display: block;">VIDA ÚTIL</label>
+                            <input type="number" id="vidadelantereas" placeholder="0 %">
+                            <label style="display: block;margin-bottom: 8px;margin-top: 10px;">PRESIÓN</label>
+                            <input type="number" id="presiondelantereas" placeholder="0 PSI">
+                        </div>
+                        <div class="form-group">
+                            <p>LLANTAS TRASERAS</p>
+                            <div class="llantas-imagen">
+                                <img src="public/img/rueda.png" alt="Icono de llanta" class="rueda">
+                            </div>
+                            <label style="display: block;">VIDA ÚTIL</label>
+                            <input type="number" id="vidatraseras" placeholder="0 %">
+                            <label style="display: block;margin-bottom: 8px;margin-top: 10px;">PRESIÓN</label>
+                            <input type="number" id="presiontraseras" placeholder="0 PSI">
+                        </div>
+                        <div style="width: 40px;">
+                        </div>
+                    </div>
+                    <!-- Daño o Golpe en el Vehículo -->
+                    <h3>DAÑO O GOLPE EN EL VEHICULO</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ruta_imagen">SUBIR EVIDENICA</label>
+                            <!-- Input de archivo -->
+                            <input type="file" id="ruta_imagen" accept="image/*" multiple onchange="mostrarImagenes(event)" class="form-control" multiple>
+                            <!-- Previsualización de la imagen -->
+                            <div id="preview" style="margin-top: 10px; display: flex; flex-wrap: wrap;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">OBSERVACIONES</label>
+                            <textarea id="observaciones" placeholder="Rellena en caso de que se encuentre algún golpe o daño en la unidad"></textarea>
+                        </div>
+                    </div>
+                    <!-- Firma -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ELABORÓ: CONTROL VEHICULAR</label>
+                            <input type="text" id="firmaelaboro" placeholder="Nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label>RECIBE VEHÍCULO: RESPONSABLE</label>
+                            <input type="text" id="firmarecibe" placeholder="Nombre Completo" >
+                        </div>
+                    </div>	
+                    <button type="button" class="btn anterior" onclick="previousTab('interiores')">Anterior</button>
+                    <button type="submit" class="btn guardar">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="registroModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="registrosContenedor" class="registros-cont">
+                <!-- Los registros se insertarán aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script src="public/js/registros_revision.js"></script>
+</body>
+</html>
+  
