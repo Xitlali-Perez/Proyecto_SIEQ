@@ -403,7 +403,7 @@ app.post('/api/submitForm', (req, res) => {
                             const idExtra = extraResult.insertId;
 
                             // Insertar formulario
-                            const formularioQuery = `INSERT INTO formulario (folio, fecha, hora_registro, kilometraje, destino, licen_conducir, 
+                            const formularioQuery = `INSERT INTO formulario (fecha, hora_registro, kilometraje, destino, licen_conducir, 
                                                         t_circulacion, poliza, vvq, id_vehiculo_fk, id_niveles_fk, id_interiores_fk, id_exteriores_fk, 
                                                         id_emergencia_fk, id_extra_fk, conductor, fir_recibe_vehiculo, fir_elaboro_vehiculo, estado, tipo_registro) 
                                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
